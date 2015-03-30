@@ -35,7 +35,7 @@ NuGet.Package.Builder is designed to run on a build server working well with Pac
 It uses `nuget.exe` under the cover to package and publish its packages.
 
 Override publish options from VSO or TFS build template
-![VSO Build Process Template](docs/BuildProcessTemplate.png)
+![VSO Build Process Template](docs/BuildProcessTemplate.PNG)
 
 ## package.builder.json
 ```
