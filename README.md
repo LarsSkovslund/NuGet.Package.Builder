@@ -1,5 +1,9 @@
 # NuGet.Package.Builder
 
+##Getting started
+NuGet.Package.Builder imports a MSBuild target file into the project along with a `.nuspec` file and a builder configuration file `package.builder.json`.
+
+## package.builder.json
 ```
 {
     // Enable this if you need to build package from the nuspec file instead of the project file.
