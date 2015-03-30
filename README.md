@@ -1,6 +1,6 @@
 # NuGet.Package.Builder
 
-```json
+```
 {
     // Enable this if you need to build package from the nuspec file instead of the project file.
     "UseNuspecFileOnly": false,
@@ -45,3 +45,4 @@
         "Timeout": 300
     }
 }
+```
