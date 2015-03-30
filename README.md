@@ -17,7 +17,10 @@ Automatic publishing packages can be configured in `package.builder.json` by set
 This will publish the package every time the project is compiled enabling a convenient way of publishing a package directly from Visual Studio.
 However publishing every time you compile is often not an ideal workflow so NuGet.Package.Builder offers a number of override possibilities.
 
-Parsing MSBuild properties you can override; When to publish `PublishNuGetPackage=true` , Provide a new API key `PublishApiKey={key}` or Change the source `PublishSource=https://myget/F/MyFeed/`
+You can override publishing values by parsing MSBuild properties to a solution or project.
+- To publish nuget package on build set `PublishNuGetPackage=true`
+- To provide a new API key set `PublishApiKey={key}`
+- To publish to another source set `PublishSource=https://myget/F/MyFeed/`
 
 ```
 MSBuild.exe myproject.csproj /p:PublishNuGetPackage=true;PublishApiKey={key};PublishSource=https://myget/F/MyFeed/
