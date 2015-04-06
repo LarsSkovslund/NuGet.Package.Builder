@@ -3,11 +3,13 @@
 NuGet.Package.Builder imports a MSBuild target file into the project along with a [.nuspec] (http://docs.nuget.org/create/nuspec-reference) file and a builder configuration file (`package.builder.json`).
 The rules and conventions for configuring a [.nuspec] (http://docs.nuget.org/create/nuspec-reference) file can be found in the [official NuGet documentation] (http://docs.nuget.org/create/creating-and-publishing-a-package)
 
+Change history can be found [here](Changelog.md)
+
 ##Getting started
 - In Visual Studio, create a new Class library.
 - Open Package Manager Console view and type ```Install-Package -Id NuGet.Package.Builder```
 - You now have two new files added `{your project name}.nuspec` and `package.builder.json`
-- Compile and you now have have your first NuGet package
+- Compile and you now have your first NuGet package
 
 ##Package output
 Generated packages are location in the same folder as output binaries produced by the build, respecting build configuration, platform and output redirect as configured by VSO build template. 
@@ -21,6 +23,7 @@ You can override publishing values by parsing MSBuild properties to a solution o
 - To publish nuget package on build set `PublishNuGetPackage=true`
 - To provide a new API key set `PublishApiKey={key}`
 - To publish to another source set `PublishSource=https://myget/F/MyFeed/`
+- To create a cmd file for publishing the package set `GeneratePublishCommand=true`
 
 ```
 MSBuild.exe myproject.csproj /p:PublishNuGetPackage=true;PublishApiKey={key};PublishSource=https://myget/F/MyFeed/
@@ -30,12 +33,22 @@ MSBuild.exe myproject.csproj /p:PublishNuGetPackage=true;PublishApiKey={key};Pub
 MSBuild.exe mysolution.sln /p:PublishNuGetPackage=true;PublishApiKey={key};PublishSource=https://myget/F/MyFeed/
 ```
 
+### Generate Publish Cmd
+To generate a publishing cmd file set the MSBuild parameter `/p:GeneratePublishCommand=true`. This is useful when 
+publishing is required to occur after all tests are passed. The cmd file is located in the same folder as the solution file with the following naming convention `publish_{project}.cmd`.
+
+If no source is specified, that is `package.builder.json -> Publish.Source` or `PublishSource` is not specified, then this value is required to be passed to the `cmd` file as the second parameter.
+
+If no ApiKey is specified, that is `package.builder.json -> Publish.ApiKey` or `PublishApiKey` is not specified, then this value is required to be passed to the `cmd` file as the first parameter.
+
+
 ## Build Server
 NuGet.Package.Builder is designed to run on a build server working well with Package Restore without any dependency to installed software.
 It uses `nuget.exe` under the cover to package and publish its packages.
 
 Override publish options from VSO or TFS build template
 ![VSO Build Process Template](docs/BuildProcessTemplate.PNG)
+
 
 ## package.builder.json
 ```
@@ -65,7 +78,7 @@ Override publish options from VSO or TFS build template
 
     "Publish": {
         // Publish nuget package on build.
-        // Note: This will publish the package everytime you compile the project.
+        // Note: This will publish the package every time you compile the project.
         // You can override this behavior by parsing in a MSBuild property named PublishNuGetPackage setting
         // the value to true to control when a package is published.
         // e.g. To publish package when building nightly build on VSO, add the following to the build definitions process template

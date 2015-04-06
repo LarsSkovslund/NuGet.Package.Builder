@@ -32,6 +32,9 @@ namespace NuGet.Package.Builder
 		[Option("source", DefaultValue = null, HelpText = "Override publish source")]
 		public string OverrideSource { get; set; }
 
+		[Option("createPublishCommand", DefaultValue = false, HelpText = "Generate publish command")]
+		public bool GeneratePublishCommand { get; set; }
+
 		[ParserState]
 		public IParserState LastParserState { get; set; }
 

@@ -18,9 +18,10 @@
 			<ForcePublish Condition="'$(PublishNuGetPackage)' == 'true'">-f</ForcePublish>
 			<OverrideApiKey Condition="'$(PublishApiKey)' != ''">--apiKey $(PublishApiKey)</OverrideApiKey>
 			<OverrideSource Condition="'$(PublishSource)' != ''">--source $(PublishSource)</OverrideSource>
+			<_GeneratePublishCommand Condition="'$(GeneratePublishCommand)' != ''">--createPublishCommand</_GeneratePublishCommand>
 
 			<NuGetCommand>$(ThisFilePath)NuGet.Package.Builder.exe</NuGetCommand>
-			<BuildCommand>"$(NuGetCommand)" --path "$(NuGetPathWithoutTrailingBackslash)" -t "$(TargetName)" -e $(ProjectExt) -p "Configuration=$(Configuration);Platform=$(Platform)" -o "$(FullOutputPathWithoutTrailingBackslash)" -w "$(ProjectDirWithoutTrailingBackslash)" $(ForcePublish) $(OverrideApiKey) $(OverrideSource)</BuildCommand>
+			<BuildCommand>"$(NuGetCommand)" --path "$(NuGetPathWithoutTrailingBackslash)" -t "$(TargetName)" -e $(ProjectExt) -p "Configuration=$(Configuration);Platform=$(Platform)" -o "$(FullOutputPathWithoutTrailingBackslash)" -w "$(ProjectDirWithoutTrailingBackslash)" $(ForcePublish) $(OverrideApiKey) $(OverrideSource) $(_GeneratePublishCommand)</BuildCommand>
 		</PropertyGroup>
 
 		<Message Text="$(BuildCommand)" Importance="High" />

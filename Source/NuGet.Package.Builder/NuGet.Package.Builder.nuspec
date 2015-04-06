@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<package >
+<package>
 	<metadata>
-		<id>$id$</id>
-		<version>$version$</version>
+		<id>NuGet.Package.Builder</id>
+		<version>1.0.6</version>
 		<title>NuGet Package Builder Tool</title>
 		<authors>Lars Skovslund</authors>
 		<owners>Lars Skovslund</owners>

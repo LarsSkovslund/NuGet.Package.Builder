@@ -24,7 +24,7 @@
 
     "Publish": {
         // Publish nuget package on build.
-        // Note: This will publish the package everytime you compile the project.
+        // Note: This will publish the package every time you compile the project.
         // You can override this behavior by parsing in a MSBuild property named PublishNuGetPackage setting
         // the value to true to control when a package is published.
         // e.g. To publish package when building nightly build on VSO, add the following to the build definitions process template

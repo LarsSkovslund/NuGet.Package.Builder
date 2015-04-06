@@ -96,10 +96,10 @@
     <PropertyGroup>
       <FullOutputPathWithoutTrailingBackslash>$([System.IO.Path]::GetFullPath('$(OutDir)').TrimEnd('\'))</FullOutputPathWithoutTrailingBackslash>
       <PackageOutputDir Condition="$(PackageOutputDir) == ''">$(TargetDir.Trim('\\'))</PackageOutputDir>
-      <!--<NuGetCommand>$(SolutionDir)packages\NuGet.CommandLine.2.8.5\tools\NuGet.exe</NuGetCommand>-->
       <NuGetCommand>$(SolutionDir)tools\NuGet.exe</NuGetCommand>
-      <BuildCommand>"$(NuGetCommand)" pack "$(ProjectDir)$(TargetName).csproj" -NoDefaultExcludes -Verbosity Detailed -Properties "OutDir=$(FullOutputPathWithoutTrailingBackslash);Configuration=$(Configuration);Platform=$(Platform)" -NonInteractive -OutputDirectory "$(FullOutputPathWithoutTrailingBackslash)" -basepath "$(FullOutputPathWithoutTrailingBackslash)"</BuildCommand>
-    </PropertyGroup>
+      <BuildCommand>"$(NuGetCommand)" pack "$(ProjectDir)$(TargetName).nuspec" -Verbosity Detailed -Properties "OutDir=$(FullOutputPathWithoutTrailingBackslash);Configuration=$(Configuration);Platform=$(Platform)" -NonInteractive -OutputDirectory "$(FullOutputPathWithoutTrailingBackslash)" -basepath "$(FullOutputPathWithoutTrailingBackslash)"</BuildCommand>
+		<!--<BuildCommand>"$(NuGetCommand)" pack "$(ProjectDir)$(TargetName).csproj" -NoDefaultExcludes -Verbosity Detailed -Properties "OutDir=$(FullOutputPathWithoutTrailingBackslash);Configuration=$(Configuration);Platform=$(Platform)" -NonInteractive -OutputDirectory "$(FullOutputPathWithoutTrailingBackslash)" -basepath "$(FullOutputPathWithoutTrailingBackslash)"</BuildCommand>-->
+	</PropertyGroup>
     <Message Text="$(BuildCommand)" Importance="High" />
     <Exec Command="$(BuildCommand)" LogStandardErrorAsError="true" WorkingDirectory="$(ProjectDir)" />
   </Target>

@@ -23,6 +23,11 @@ namespace NuGet.Package.Builder
 				PushPackage(arguments, options);
 			}
 
+			if (arguments.GeneratePublishCommand)
+			{
+				CreatePublishCommand(arguments, options);
+			}
+
 			return 0;
 		}
 
@@ -60,6 +65,27 @@ namespace NuGet.Package.Builder
 			{
 				process.WaitForExit(5000);
 			}
+		}
+
+		//Publish Get-ChildItem -Path "C:\Users\Lars\Documents\visual studio 2013\Projects\ClassLibrary2" -File publish_*.cmd | Foreach { & $_.FullName 'apikey', 'https://mysource' }
+		private static void CreatePublishCommand(ArgumentOptions args, PackageOptions options)
+		{
+			var solutionDir = Directory.GetParent(args.PathToNuGet + @"\..\..\..\").FullName;
+			var outputFile = Path.Combine(solutionDir, string.Format("publish_{0}.cmd", args.TargetName));
+			Console.WriteLine(outputFile);
+			if (File.Exists(outputFile))
+				File.Delete(outputFile);
+
+			if (string.IsNullOrWhiteSpace(args.OverrideApiKey) && string.IsNullOrWhiteSpace(options.Publish.ApiKey))
+				args.OverrideApiKey = "%1";
+
+			if (string.IsNullOrWhiteSpace(args.OverrideSource) && string.IsNullOrWhiteSpace(options.Publish.Source))
+				args.OverrideSource = "%2";
+
+			File.WriteAllText(
+				outputFile, 
+				string.Format("\"{0}\" {1}", Path.Combine(args.PathToNuGet, "NuGet.exe"), options.GetPushCommandArgs(args))
+			);
 		}
 	}
 }

@@ -5,10 +5,12 @@
    A pull request fixing the issue can be found here https://nuget.codeplex.com/SourceControl/network/forks/StephenCleary/Issue4013/contribution/6798
    It has been merged and will be available in 3.0 so until then the special version will be used.
 
+ + Added support for generating command files for publishing packages at any point after the build process.
+
 ##Release 1.0.5
 --------------------------------------------------
  + Now using NuGet.exe 2.8.5
- + {project}.nuspec files are no longer removed when uninstallling. This fixes the issue with running a Update-Package from Package Manager Console where all .nuspec files will be removed and added again.
+ + {project}.nuspec files are no longer removed when uninstalling. This fixes the issue with running a Update-Package from Package Manager Console where all .nuspec files will be removed and added again.
 
 
 ##Release 1.0.3

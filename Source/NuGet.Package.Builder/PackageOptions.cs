@@ -89,7 +89,13 @@ namespace NuGet.Package.Builder
 
 		private string GetPackageSource(ArgumentOptions arguments)
 		{
-			return string.Format("-s {0}", arguments.OverrideSource == null ? Publish.Source : arguments.OverrideSource);
+			var source = arguments.OverrideSource == null 
+				? Publish.Source 
+				: arguments.OverrideSource;
+
+			return !string.IsNullOrWhiteSpace(source)
+				? string.Format("-s {0}", source)
+				: string.Empty;
 		}
 
 		private string GetApiKey(ArgumentOptions arguments)
@@ -106,7 +112,6 @@ namespace NuGet.Package.Builder
 
 		public string GetPushCommandArgs(ArgumentOptions arguments)
 		{
-			//push foo.nupkg 4003d786-cc37-4004-bfdf-c4f3e8ef9b3a -s http://customsource/
 			return string.Format(@"push ""{0}"" {1} {2} {3} {4} -NonInteractive",
 				GetPackagesToPush(arguments),
 				GetApiKey(arguments),
