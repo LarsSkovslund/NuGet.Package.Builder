@@ -18,19 +18,17 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{3C611F53-EA5E-469F-8E54-10C93BFE0DA1}"
 	ProjectSection(SolutionItems) = preProject
 		Build.cmd = Build.cmd
+		Changelog.md = Changelog.md
 		Source\SharedAssemblyInfo.cs = Source\SharedAssemblyInfo.cs
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{F1BABF7B-D122-4E83-882B-4DC017619642}"
+	ProjectSection(SolutionItems) = preProject
+		docs\BuildProcessTemplate.PNG = docs\BuildProcessTemplate.PNG
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://codefusion.visualstudio.com/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Source\\NuGet.Package.Builder\\NuGet.Package.Builder.csproj
-		SccProjectName1 = Source/NuGet.Package.Builder
-		SccLocalPath1 = Source\\NuGet.Package.Builder
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

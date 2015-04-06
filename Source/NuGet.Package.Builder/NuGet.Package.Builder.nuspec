@@ -9,8 +9,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Seamlessly extends any (.csproj, .vbproj, .fsproj) project to produce a NuGet package (.nupkg) and symbols at compile time. Supports publishing of packages when project is build or through MSBuild properties.</description>
 		<releaseNotes>
-			+ Now using NuGet.exe 2.8.5
-			+ {project}.nuspec files are no longer removed when uninstallling. This fixes the issue with running a Update-Package from Package Manager Console where all .nuspec files will be removed and added again.
+			See https://raw.githubusercontent.com/LarsSkovslund/NuGet.Package.Builder/master/Changelog.md
 		</releaseNotes>
 		<copyright>Copyright 2015</copyright>
 		<projectUrl>https://github.com/LarsSkovslund/NuGet.Package.Builder</projectUrl>

@@ -1,6 +1,0 @@
-
- Release 1.0.3
- --------------------------------------------------
- Fixed bug when parsing PublishApiKey or PublishSource from MSBuild to NuGet.Package.Builder.
- 
- 
