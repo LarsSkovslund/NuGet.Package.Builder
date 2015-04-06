@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<PrepareForRunDependsOn>
+			$(PrepareForRunDependsOn);
+			__BuildNuGetPackage;
+		</PrepareForRunDependsOn>
+	</PropertyGroup>
+
+	<Target Name="__BuildNuGetPackage">
+		<PropertyGroup>
+			<ThisFilePath>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\tools\'))</ThisFilePath>
+			<!-- Remove trailing backslash to not run into argument issues with .NET -->
+			<FullOutputPathWithoutTrailingBackslash>$([System.IO.Path]::GetFullPath('$(OutDir)').TrimEnd('\'))</FullOutputPathWithoutTrailingBackslash>
+			<ProjectDirWithoutTrailingBackslash>$([System.IO.Path]::GetFullPath('$(ProjectDir)').TrimEnd('\'))</ProjectDirWithoutTrailingBackslash>
+			<NuGetPathWithoutTrailingBackslash>$([System.IO.Path]::GetFullPath('$(ThisFilePath)').TrimEnd('\'))</NuGetPathWithoutTrailingBackslash>
+			
+			<ForcePublish Condition="'$(PublishNuGetPackage)' == 'true'">-f</ForcePublish>
+			<OverrideApiKey Condition="'$(PublishApiKey)' != ''">--apiKey $(PublishApiKey)</OverrideApiKey>
+			<OverrideSource Condition="'$(PublishSource)' != ''">--source $(PublishSource)</OverrideSource>
+
+			<NuGetCommand>$(ThisFilePath)NuGet.Package.Builder.exe</NuGetCommand>
+			<BuildCommand>"$(NuGetCommand)" --path "$(NuGetPathWithoutTrailingBackslash)" -t "$(TargetName)" -e $(ProjectExt) -p "Configuration=$(Configuration);Platform=$(Platform)" -o "$(FullOutputPathWithoutTrailingBackslash)" -w "$(ProjectDirWithoutTrailingBackslash)" $(ForcePublish) $(OverrideApiKey) $(OverrideSource)</BuildCommand>
+		</PropertyGroup>
+
+		<Message Text="$(BuildCommand)" Importance="High" />
+		<Exec Command="$(BuildCommand)" LogStandardErrorAsError="true" WorkingDirectory="$(ProjectDir)" />
+	</Target>
+	
+</Project>

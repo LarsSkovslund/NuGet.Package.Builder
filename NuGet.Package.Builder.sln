@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuGet.Package.Builder", "Source\NuGet.Package.Builder\NuGet.Package.Builder.csproj", "{4C7CA058-3570-4810-9FE3-C091BA6C4772}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{04E97E24-4E6F-413C-80D8-CAB1D926EA4A}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".tools", ".tools", "{B8539E8B-AA14-4C3F-831F-6A2030653D97}"
+	ProjectSection(SolutionItems) = preProject
+		tools\NuGet.exe = tools\NuGet.exe
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{3C611F53-EA5E-469F-8E54-10C93BFE0DA1}"
+	ProjectSection(SolutionItems) = preProject
+		Build.cmd = Build.cmd
+		Source\SharedAssemblyInfo.cs = Source\SharedAssemblyInfo.cs
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://codefusion.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Source\\NuGet.Package.Builder\\NuGet.Package.Builder.csproj
+		SccProjectName1 = Source/NuGet.Package.Builder
+		SccLocalPath1 = Source\\NuGet.Package.Builder
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C7CA058-3570-4810-9FE3-C091BA6C4772}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C7CA058-3570-4810-9FE3-C091BA6C4772}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C7CA058-3570-4810-9FE3-C091BA6C4772}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C7CA058-3570-4810-9FE3-C091BA6C4772}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

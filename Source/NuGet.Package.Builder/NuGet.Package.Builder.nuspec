@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<package >
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>NuGet Package Builder Tool</title>
+		<authors>Lars Skovslund</authors>
+		<owners>Lars Skovslund</owners>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Seamlessly extends any (.csproj, .vbproj, .fsproj) project to produce a NuGet package (.nupkg) and symbols at compile time. Supports publishing of packages when project is build or through MSBuild properties.</description>
+		<releaseNotes>
+			+ Now using NuGet.exe 2.8.5
+			+ {project}.nuspec files are no longer removed when uninstallling. This fixes the issue with running a Update-Package from Package Manager Console where all .nuspec files will be removed and added again.
+		</releaseNotes>
+		<copyright>Copyright 2015</copyright>
+		<projectUrl>https://github.com/LarsSkovslund/NuGet.Package.Builder</projectUrl>
+		<licenseUrl>https://raw.githubusercontent.com/LarsSkovslund/NuGet.Package.Builder/master/LICENSE</licenseUrl>
+		<developmentDependency>true</developmentDependency>
+		<tags>NuGet Package MSBuild Automation</tags>
+	</metadata>
+	<files>
+		<file src="package.builder.json" target="content" />
+		
+		<file src="NuGet.Package.Builder.targets" target="build" />
+		
+		<file src="..\..\..\..\tools\NuGet.exe" target="tools" />
+		<file src="Install.ps1" target="tools" />
+		<!-- <file src="Uninstall.ps1" target="tools" /> -->
+		<file src="Package.template" target="tools" />
+		<file src="NuGet.Package.Builder.exe" target="tools" />
+		<file src="Newtonsoft.Json.dll" target="tools" />
+		<file src="CommandLine.dll" target="tools" />
+	</files>
+</package>
