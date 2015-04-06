@@ -9,7 +9,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Seamlessly extends any (.csproj, .vbproj, .fsproj) project to produce a NuGet package (.nupkg) and symbols at compile time. Supports publishing of packages when project is build or through MSBuild properties.</description>
 		<releaseNotes>
-			See https://raw.githubusercontent.com/LarsSkovslund/NuGet.Package.Builder/master/Changelog.md
+			See change log at https://raw.githubusercontent.com/LarsSkovslund/NuGet.Package.Builder/master/Changelog.md
 		</releaseNotes>
 		<copyright>Copyright 2015</copyright>
 		<projectUrl>https://github.com/LarsSkovslund/NuGet.Package.Builder</projectUrl>
