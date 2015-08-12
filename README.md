@@ -12,7 +12,8 @@ Change history can be found [here](Changelog.md)
 - Compile and you now have your first NuGet package
 
 ##Package output
-Generated packages are location in the same folder as output binaries produced by the build, respecting build configuration, platform and output redirect as configured by VSO build template. 
+Generated packages are location in the same folder as output binaries produced by the build, respecting build configuration, platform and output redirect as configured by VSO build template.
+To limit package generation to a specific configuration set the ```Configuration``` property in the ```package.builder.json``` file to the desired configuration name. e.g. setting it to ```Release``` will only generate a package when compiling a release configuration.
 
 ##Publish Packages
 Automatic publishing packages can be configured in `package.builder.json` by setting Publish.PublishOnBuild to `true`. 
@@ -75,6 +76,11 @@ Override publish options from VSO or TFS build template
     // Provides the ability to specify a semicolon ";" delimited list of properties when creating a package.
     // Included by default are Configuration and Platform
     "AdditionalProperties": "",
+
+    // Limit the package generation to a specific build configuration.
+    // Leaving this value empty will always trigger package generation
+    // Note: config parameter was introduced in release 1.0.7
+    "Configuration": "",
 
     "Publish": {
         // Publish nuget package on build.

@@ -1,3 +1,8 @@
+##Release 1.0.7
+
+ + Fixed bug where binary output name was used instead of project name when building a nuget package from project.
+
+
 ##Release 1.0.6
 
  + To support generation of packages through nuget.exe pack myproject.csproj a "special" version of 

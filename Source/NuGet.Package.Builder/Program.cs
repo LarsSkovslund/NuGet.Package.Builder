@@ -17,6 +17,11 @@ namespace NuGet.Package.Builder
 			}
 
 			var options = PackageOptions.LoadOrDefault(arguments);
+            if (!ShouldBuildPackage(arguments, options))
+            {
+                return 0;
+            }
+
 			BuildPackage(arguments, options);
 			if (options.Publish.PublishOnBuild)
 			{
@@ -31,7 +36,13 @@ namespace NuGet.Package.Builder
 			return 0;
 		}
 
-		private static void BuildPackage(ArgumentOptions args, PackageOptions options)
+        private static bool ShouldBuildPackage(ArgumentOptions arguments, PackageOptions options)
+        {
+            return string.IsNullOrEmpty(options.Configuration)
+                || string.Compare(options.Configuration, arguments.Configuration, true) == 0;
+        }
+
+        private static void BuildPackage(ArgumentOptions args, PackageOptions options)
 		{
 			var startInfo = new ProcessStartInfo
 			{

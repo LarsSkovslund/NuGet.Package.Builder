@@ -11,8 +11,9 @@ namespace NuGet.Package.Builder
 		public bool NoDefaultExcludes { get; set; }
 		public string Verbosity { get; set; }
 		public string AdditionalProperties { get; set; }
+        public string Configuration { get; set; }
 
-		public PushPackageOptions Publish { get; set; }
+        public PushPackageOptions Publish { get; set; }
 
 		public PackageOptions()
 		{

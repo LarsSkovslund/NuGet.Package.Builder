@@ -35,7 +35,10 @@ namespace NuGet.Package.Builder
 		[Option("createPublishCommand", DefaultValue = false, HelpText = "Generate publish command")]
 		public bool GeneratePublishCommand { get; set; }
 
-		[ParserState]
+        [Option("c", DefaultValue = null, HelpText = "Current MSBuild configuration")]
+        public string Configuration { get; set; }
+
+        [ParserState]
 		public IParserState LastParserState { get; set; }
 
 		[HelpOption]
