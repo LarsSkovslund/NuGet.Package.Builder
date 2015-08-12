@@ -2,6 +2,7 @@
 
  + Fixed bug where binary output name was used instead of project name when building a nuget package from project.
 
+ + Added support for build configuration specific package generation.
 
 ##Release 1.0.6
 
