@@ -1,3 +1,7 @@
+##Release 1.0.8
+
+ + Removed timeout restriction when building and publishing NuGet packages.
+
 ##Release 1.0.7
 
  + Fixed bug where binary output name was used instead of project name when building a nuget package from project.

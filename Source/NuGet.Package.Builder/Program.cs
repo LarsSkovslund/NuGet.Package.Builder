@@ -56,7 +56,7 @@ namespace NuGet.Package.Builder
 			Console.WriteLine("{0} {1}", startInfo.FileName, startInfo.Arguments);
 			using (var process = Process.Start(startInfo))
 			{
-				process.WaitForExit(5000);
+				process.WaitForExit();
 			}
 		}
 
@@ -74,7 +74,7 @@ namespace NuGet.Package.Builder
 			Console.WriteLine("{0} {1}", startInfo.FileName, startInfo.Arguments);
 			using (var process = Process.Start(startInfo))
 			{
-				process.WaitForExit(5000);
+				process.WaitForExit();
 			}
 		}
 
