@@ -11,7 +11,10 @@ namespace NuGet.Package.Builder
 		[Option('t', "targetName", Required = true, HelpText = "Target name of project")]
 		public string TargetName { get; set; }
 
-		[Option('e', "projectExt", Required = true, HelpText = "Project extension (.csproj, .vbproj, .fsproj)")]
+        [Option('r', "projectName", Required = true, HelpText = "Name of project")]
+        public string ProjectName { get; set; }
+
+        [Option('e', "projectExt", Required = true, HelpText = "Project extension (.csproj, .vbproj, .fsproj)")]
 		public string ProjectExt { get; set; }
 
 		[Option('p', "properties", Required = true, HelpText = "Default properties to set on nuget.exe pack -Properties")]

@@ -21,7 +21,7 @@
 			<_GeneratePublishCommand Condition="'$(GeneratePublishCommand)' != ''">--createPublishCommand</_GeneratePublishCommand>
 
 			<NuGetCommand>$(ThisFilePath)NuGet.Package.Builder.exe</NuGetCommand>
-			<BuildCommand>"$(NuGetCommand)" --path "$(NuGetPathWithoutTrailingBackslash)" -t "$(ProjectName)" -e $(ProjectExt) -c "$(Configuration)" -p "Configuration=$(Configuration);Platform=$(Platform)" -o "$(FullOutputPathWithoutTrailingBackslash)" -w "$(ProjectDirWithoutTrailingBackslash)" $(ForcePublish) $(OverrideApiKey) $(OverrideSource) $(_GeneratePublishCommand)</BuildCommand>
+			<BuildCommand>"$(NuGetCommand)" --path "$(NuGetPathWithoutTrailingBackslash)" -r "$(ProjectName)" -t "$(TargetName)" -e $(ProjectExt) -c "$(Configuration)" -p "Configuration=$(Configuration);Platform=$(Platform)" -o "$(FullOutputPathWithoutTrailingBackslash)" -w "$(ProjectDirWithoutTrailingBackslash)" $(ForcePublish) $(OverrideApiKey) $(OverrideSource) $(_GeneratePublishCommand)</BuildCommand>
 		</PropertyGroup>
 
 		<Message Text="$(BuildCommand)" Importance="High" />

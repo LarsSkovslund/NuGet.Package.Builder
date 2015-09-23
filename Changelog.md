@@ -1,3 +1,7 @@
+##Release 1.0.9
+
+ + Fixed issue related to bug fix for 1.0.7 where publishing failed to use the correct package name.
+
 ##Release 1.0.8
 
  + Removed timeout restriction when building and publishing NuGet packages.

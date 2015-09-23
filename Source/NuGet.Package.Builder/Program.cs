@@ -78,7 +78,6 @@ namespace NuGet.Package.Builder
 			}
 		}
 
-		//Publish Get-ChildItem -Path "C:\Users\Lars\Documents\visual studio 2013\Projects\ClassLibrary2" -File publish_*.cmd | Foreach { & $_.FullName 'apikey', 'https://mysource' }
 		private static void CreatePublishCommand(ArgumentOptions args, PackageOptions options)
 		{
 			var solutionDir = Directory.GetParent(args.PathToNuGet + @"\..\..\..\").FullName;

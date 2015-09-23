@@ -40,7 +40,7 @@ namespace NuGet.Package.Builder
 
 		private string GetProjectOrNuspecFile(ArgumentOptions arguments)
 		{
-			return Path.Combine(arguments.WorkingDirectory, arguments.TargetName + ((UseNuspecFileOnly) ? ".nuspec" : arguments.ProjectExt));
+			return Path.Combine(arguments.WorkingDirectory, arguments.ProjectName + ((UseNuspecFileOnly) ? ".nuspec" : arguments.ProjectExt));
 		}
 
 		private string GetVerbosity()
