@@ -82,6 +82,9 @@ Override publish options from VSO or TFS build template
     // Note: config parameter was introduced in release 1.0.7
     "Configuration": "",
 
+	// Specifies one or more wildcard patterns to exclude when creating a package.
+	"Exclude": "",
+
     "Publish": {
         // Publish nuget package on build.
         // Note: This will publish the package every time you compile the project.
