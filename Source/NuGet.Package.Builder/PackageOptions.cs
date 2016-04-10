@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.IO;
 
 namespace NuGet.Package.Builder
@@ -90,9 +91,20 @@ namespace NuGet.Package.Builder
             return string.IsNullOrWhiteSpace(Exclude) ? "" : string.Format("-Exclude \"{0}\"", Exclude);
 	    }
 
-	    private string GetPackagesToPush(ArgumentOptions arguments)
+	    private string GetPackagesToPush(ArgumentOptions arguments, bool pushSymbolsPackage)
 		{
-			return string.Format("{0}\\{1}.*.nupkg", arguments.OutDir, arguments.TargetName);
+            var packages = Directory.GetFiles(arguments.OutDir, $"{arguments.TargetName}.*.nupkg");
+            foreach (var package in packages)
+            {
+                var isSymbolPackage = package.IndexOf("symbols", StringComparison.InvariantCultureIgnoreCase) != -1;
+                if (pushSymbolsPackage && isSymbolPackage)
+                    return package;
+
+                if (!pushSymbolsPackage && !isSymbolPackage)
+                    return package;
+            }
+
+            return string.Format("{0}\\{1}.*.nupkg", arguments.OutDir, arguments.TargetName);
 		}
 
 		private string GetPackageSource(ArgumentOptions arguments)
@@ -106,7 +118,18 @@ namespace NuGet.Package.Builder
 				: string.Empty;
 		}
 
-		private string GetApiKey(ArgumentOptions arguments)
+        private string GetSymbolPackageSource(ArgumentOptions arguments)
+        {
+            var source = arguments.OverrideSymbolSource == null
+                ? Publish.SymbolSource
+                : arguments.OverrideSymbolSource;
+
+            return !string.IsNullOrWhiteSpace(source)
+                ? string.Format("-s {0}", source)
+                : string.Empty;
+        }
+
+        private string GetApiKey(ArgumentOptions arguments)
 		{
 			return arguments.OverrideApiKey == null 
 				? Publish.ApiKey 
@@ -118,12 +141,14 @@ namespace NuGet.Package.Builder
 			return string.Format("-Timeout {0}", Publish.Timeout);
 		}
 
-		public string GetPushCommandArgs(ArgumentOptions arguments)
+		public string GetPushCommandArgs(ArgumentOptions arguments, bool pushSymbolsPackage)
 		{
 			return string.Format(@"push ""{0}"" {1} {2} {3} {4} -NonInteractive",
-				GetPackagesToPush(arguments),
+				GetPackagesToPush(arguments, pushSymbolsPackage),
 				GetApiKey(arguments),
-				GetPackageSource(arguments),
+                pushSymbolsPackage 
+                  ? GetSymbolPackageSource(arguments)
+                  : GetPackageSource(arguments),
 				GetTimeout(),
 				GetVerbosity()
 			);

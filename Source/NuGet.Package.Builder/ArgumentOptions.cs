@@ -35,7 +35,10 @@ namespace NuGet.Package.Builder
 		[Option("source", DefaultValue = null, HelpText = "Override publish source")]
 		public string OverrideSource { get; set; }
 
-		[Option("createPublishCommand", DefaultValue = false, HelpText = "Generate publish command")]
+        [Option("symbolSource", DefaultValue = null, HelpText = "Override publish symbol source")]
+        public string OverrideSymbolSource { get; set; }
+
+        [Option("createPublishCommand", DefaultValue = false, HelpText = "Generate publish command")]
 		public bool GeneratePublishCommand { get; set; }
 
         [Option("c", DefaultValue = null, HelpText = "Current MSBuild configuration")]

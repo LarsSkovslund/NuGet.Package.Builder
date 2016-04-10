@@ -48,6 +48,11 @@
     // You can override this behavior by parsing in a MSBuild property named PublishSource.
     "Source": "",
 
+    // Specifies the symbol server URL.
+    // If the presence of a .symbols.nupkg package is detected e.g.Symbols = "true" it will be automatically pushed to SymbolSource.org unless
+    // an alternative symbol source is specified.
+    "SymbolSource": "",
+
     // Specifies the timeout for pushing to a server in seconds. Defaults to 300 seconds (5 minutes).
     "Timeout": 300
   }

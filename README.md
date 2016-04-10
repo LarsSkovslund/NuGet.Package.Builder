@@ -24,6 +24,7 @@ You can override publishing values by parsing MSBuild properties to a solution o
 - To publish nuget package on build set `PublishNuGetPackage=true`
 - To provide a new API key set `PublishApiKey={key}`
 - To publish to another source set `PublishSource=https://myget/F/MyFeed/`
+- To publish symbols to another source set `PublishSymbolSource=https://nuget.smbsrc.net/`
 - To create a cmd file for publishing the package set `GeneratePublishCommand=true`
 
 ```
@@ -102,6 +103,11 @@ Override publish options from VSO or TFS build template
         // is set in the NuGet config file. If NuGet.exe identifies a UNC/folder source, it will perform the file copy to the source
         // You can override this behavior by parsing in a MSBuild property named PublishSource.
         "Source": "",
+
+        // Specifies the symbol server URL.
+        // If the presence of a .symbols.nupkg package is detected e.g.Symbols = "true" it will be automatically pushed to SymbolSource.org unless
+        // an alternative symbol source is specified.
+        "SymbolSource": "",
 
         // Specifies the timeout for pushing to a server in seconds. Defaults to 300 seconds (5 minutes).
         "Timeout": 300

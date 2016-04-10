@@ -25,7 +25,7 @@ namespace NuGet.Package.Builder
 			BuildPackage(arguments, options);
 			if (options.Publish.PublishOnBuild)
 			{
-				PushPackage(arguments, options);
+				PushPackages(arguments, options);
 			}
 
 			if (arguments.GeneratePublishCommand)
@@ -60,25 +60,32 @@ namespace NuGet.Package.Builder
 			}
 		}
 
-		private static void PushPackage(ArgumentOptions args, PackageOptions options)
+		private static void PushPackages(ArgumentOptions args, PackageOptions options)
 		{
-			var startInfo = new ProcessStartInfo
-			{
-				Arguments = options.GetPushCommandArgs(args),
-				FileName = Path.Combine(args.PathToNuGet, "NuGet.exe"),
-				CreateNoWindow = false,
-				UseShellExecute = false,
-				WorkingDirectory = args.WorkingDirectory
-			};
+            PushPackage(args, options, false);
+            if (options.Symbols)
+                PushPackage(args, options, true);
+        }
 
-			Console.WriteLine("{0} {1}", startInfo.FileName, startInfo.Arguments);
-			using (var process = Process.Start(startInfo))
-			{
-				process.WaitForExit();
-			}
-		}
+        private static void PushPackage(ArgumentOptions args, PackageOptions options, bool pushSymbolPackage)
+        {
+            var startInfo = new ProcessStartInfo
+            {
+                Arguments = options.GetPushCommandArgs(args, pushSymbolPackage),
+                FileName = Path.Combine(args.PathToNuGet, "NuGet.exe"),
+                CreateNoWindow = false,
+                UseShellExecute = false,
+                WorkingDirectory = args.WorkingDirectory
+            };
 
-		private static void CreatePublishCommand(ArgumentOptions args, PackageOptions options)
+            Console.WriteLine("{0} {1}", startInfo.FileName, startInfo.Arguments);
+            using (var process = Process.Start(startInfo))
+            {
+                process.WaitForExit();
+            }
+        }
+
+        private static void CreatePublishCommand(ArgumentOptions args, PackageOptions options)
 		{
 			var solutionDir = Directory.GetParent(args.PathToNuGet + @"\..\..\..\").FullName;
 			var outputFile = Path.Combine(solutionDir, string.Format("publish_{0}.cmd", args.TargetName));
@@ -94,7 +101,7 @@ namespace NuGet.Package.Builder
 
 			File.WriteAllText(
 				outputFile, 
-				string.Format("\"{0}\" {1}", Path.Combine(args.PathToNuGet, "NuGet.exe"), options.GetPushCommandArgs(args))
+				string.Format("\"{0}\" {1}", Path.Combine(args.PathToNuGet, "NuGet.exe"), options.GetPushCommandArgs(args, false))
 			);
 		}
 	}

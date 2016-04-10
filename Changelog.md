@@ -1,6 +1,8 @@
-##Release 1.10.0
+##Release 1.0.10
 
  + Added support for excluding wildcard patterns when creating package.
+ + Updated NuGet.exe from 2.8.x to 3.3
+ + Symbols are new automatically published along with the package on build time.
 
 ##Release 1.0.9
 

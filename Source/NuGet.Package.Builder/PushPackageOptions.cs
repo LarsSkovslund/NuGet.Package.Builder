@@ -5,7 +5,8 @@
 		public bool PublishOnBuild { get; set; }
 		public string ApiKey { get; set; }
 		public string Source { get; set; }
-		public int Timeout { get; set; }
+        public string SymbolSource { get; set; }
+        public int Timeout { get; set; }
 
 		public PushPackageOptions()
 		{
