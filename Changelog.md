@@ -1,3 +1,7 @@
+##Release 1.10.0
+
+ + Added support for excluding wildcard patterns when creating package.
+
 ##Release 1.0.9
 
  + Fixed issue related to bug fix for 1.0.7 where publishing failed to use the correct package name.

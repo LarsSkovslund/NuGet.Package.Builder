@@ -12,6 +12,7 @@ namespace NuGet.Package.Builder
 		public string Verbosity { get; set; }
 		public string AdditionalProperties { get; set; }
         public string Configuration { get; set; }
+        public string Exclude { get; set; }
 
         public PushPackageOptions Publish { get; set; }
 
@@ -71,7 +72,7 @@ namespace NuGet.Package.Builder
 
 		public string GetBuildCommandArgs(ArgumentOptions arguments)
 		{
-			return string.Format(@"pack ""{0}"" {1} {2} {3} {4} -NonInteractive {5} {6} {7}",
+			return string.Format(@"pack ""{0}"" {1} {2} {3} {4} -NonInteractive {5} {6} {7} {8}",
 				GetProjectOrNuspecFile(arguments),
 				Symbols ? "-Symbols" : "",
 				NoDefaultExcludes ? "-NoDefaultExcludes" : "",
@@ -79,11 +80,17 @@ namespace NuGet.Package.Builder
 				GetProperties(arguments),
 				GetOutputDirectory(arguments),
 				GetBasePath(arguments),
-				IncludeReferencedProjects ? "-IncludeReferencedProjects" : ""
+				IncludeReferencedProjects ? "-IncludeReferencedProjects" : "",
+                GetExclude()                
 			);
 		}
 
-		private string GetPackagesToPush(ArgumentOptions arguments)
+	    private string GetExclude()
+	    {
+            return string.IsNullOrWhiteSpace(Exclude) ? "" : string.Format("-Exclude \"{0}\"", Exclude);
+	    }
+
+	    private string GetPackagesToPush(ArgumentOptions arguments)
 		{
 			return string.Format("{0}\\{1}.*.nupkg", arguments.OutDir, arguments.TargetName);
 		}
