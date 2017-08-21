@@ -1,5 +1,6 @@
 ##Release 1.0.11
  + Updated Nuget.exe from 3.3 to 4.1
+ + Fix ambiguous option 's' by specifying full name of argument
 
 ##Release 1.0.10
 
