@@ -1,3 +1,6 @@
+##Release 1.0.11
+ + Updated Nuget.exe from 3.3 to 4.1
+
 ##Release 1.0.10
 
  + Added support for excluding wildcard patterns when creating package.
