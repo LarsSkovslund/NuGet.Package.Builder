@@ -114,7 +114,7 @@ namespace NuGet.Package.Builder
 				: arguments.OverrideSource;
 
 			return !string.IsNullOrWhiteSpace(source)
-				? string.Format("-s {0}", source)
+				? string.Format("-Source {0}", source)
 				: string.Empty;
 		}
 
@@ -125,7 +125,7 @@ namespace NuGet.Package.Builder
                 : arguments.OverrideSymbolSource;
 
             return !string.IsNullOrWhiteSpace(source)
-                ? string.Format("-s {0}", source)
+                ? string.Format("-SymbolSource {0}", source)
                 : string.Empty;
         }
 
