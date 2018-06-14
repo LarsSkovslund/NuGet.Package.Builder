@@ -2,9 +2,10 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<PropertyGroup>
 		<PrepareForRunDependsOn>
-			$(PrepareForRunDependsOn);
-			__BuildNuGetPackage;
-		</PrepareForRunDependsOn>
+      $(PrepareForRunDependsOn);
+		  NugetPackageBuiler_CleanNuPkg;
+      __BuildNuGetPackage;
+    </PrepareForRunDependsOn>
 	</PropertyGroup>
 
 	<Target Name="__BuildNuGetPackage">
@@ -28,5 +29,20 @@
 		<Message Text="$(BuildCommand)" Importance="High" />
 		<Exec Command="$(BuildCommand)" LogStandardErrorAsError="true" WorkingDirectory="$(ProjectDir)" />
 	</Target>
-	
+
+  <!-- Inject a custom target into Clean by extending CleanDependsOn -->
+  <PropertyGroup>
+    <CleanDependsOn> $(CleanDependsOn); NugetPackageBuiler_CleanNuPkg </CleanDependsOn>
+  </PropertyGroup>
+  
+  <Target Name="NugetPackageBuiler_CleanNuPkg">
+    <Message Text="$(ProjectDir)$(OutputPath)" Importance="High" />
+    <Message Text="CustomAfterClean_NugetPackageBuiler target executed"/>
+    <ItemGroup>
+      <_FilesToDelete Include="$(ProjectDir)$(OutputPath)*.nupkg"/>
+    </ItemGroup>
+    <Delete Files="@(_FilesToDelete)"/>
+  </Target>
+  
+
 </Project>
