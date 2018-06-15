@@ -2,10 +2,10 @@
 <package>
 	<metadata>
 		<id>NuGet.Package.Builder</id>
-		<version>1.0.11-pre02</version>
+		<version>1.0.12</version>
 		<title>NuGet Package Builder Tool</title>
-		<authors>Lars Skovslund</authors>
-		<owners>Lars Skovslund</owners>
+		<authors>Lars Skovslund/Richard Carruthers</authors>
+		<owners>Lars Skovslund/Richard Carruthers</owners>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Seamlessly extends any (.csproj, .vbproj, .fsproj) project to produce a NuGet package (.nupkg) and symbols at compile time. Supports publishing of packages when project is build or through MSBuild properties.</description>
 		<releaseNotes>

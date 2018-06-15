@@ -12,6 +12,7 @@ namespace NuGet.Package.Builder
 		public bool NoDefaultExcludes { get; set; }
 		public string Verbosity { get; set; }
 		public string AdditionalProperties { get; set; }
+	    public string AdditionalNuGetArguments { get; set; }
         public string Configuration { get; set; }
         public string Exclude { get; set; }
 
@@ -73,7 +74,7 @@ namespace NuGet.Package.Builder
 
 		public string GetBuildCommandArgs(ArgumentOptions arguments)
 		{
-			return string.Format(@"pack ""{0}"" {1} {2} {3} {4} -NonInteractive {5} {6} {7} {8}",
+			return string.Format(@"pack ""{0}"" {1} {2} {3} {4} -NonInteractive {5} {6} {7} {8} {9}",
 				GetProjectOrNuspecFile(arguments),
 				Symbols ? "-Symbols" : "",
 				NoDefaultExcludes ? "-NoDefaultExcludes" : "",
@@ -82,7 +83,8 @@ namespace NuGet.Package.Builder
 				GetOutputDirectory(arguments),
 				GetBasePath(arguments),
 				IncludeReferencedProjects ? "-IncludeReferencedProjects" : "",
-                GetExclude()                
+                GetExclude(),
+                GetAdditionalNugetParameters(arguments)
 			);
 		}
 
@@ -107,7 +109,12 @@ namespace NuGet.Package.Builder
             return string.Format("{0}\\{1}.*.nupkg", arguments.OutDir, arguments.TargetName);
 		}
 
-		private string GetPackageSource(ArgumentOptions arguments)
+		private string GetAdditionalNugetParameters(ArgumentOptions arguments)
+		{
+		    return arguments.NuGetArguments ?? AdditionalNuGetArguments ?? string.Empty;
+        }
+
+        private string GetPackageSource(ArgumentOptions arguments)
 		{
 			var source = arguments.OverrideSource == null 
 				? Publish.Source 

@@ -44,6 +44,9 @@ namespace NuGet.Package.Builder
         [Option("c", DefaultValue = null, HelpText = "Current MSBuild configuration")]
         public string Configuration { get; set; }
 
+	    [Option('n', "nugetArgs", DefaultValue = null, HelpText = "Additional NuGet arguments")]
+        public string NuGetArguments { get; set; }
+
         [ParserState]
 		public IParserState LastParserState { get; set; }
 

@@ -2,6 +2,9 @@
   // Enable this if you need to build package from the nuspec file instead of the project file.
   "UseNuspecFileOnly": false,
 
+  // Additional command line arguments to pass to nuget.exe (e.g. -tool)
+  "AdditionalNuGetArguments": "",
+
   // Determines if a package containing sources and symbols should be created.
   // When specified with a nuspec, creates a regular NuGet package file and the corresponding symbols package
   "Symbols": false,
