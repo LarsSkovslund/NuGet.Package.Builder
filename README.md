@@ -1,21 +1,21 @@
 # NuGet.Package.Builder
 
-NuGet.Package.Builder imports a MSBuild target file into the project along with a [.nuspec] (http://docs.nuget.org/create/nuspec-reference) file and a builder configuration file (`package.builder.json`).
-The rules and conventions for configuring a [.nuspec] (http://docs.nuget.org/create/nuspec-reference) file can be found in the [official NuGet documentation] (http://docs.nuget.org/create/creating-and-publishing-a-package)
+NuGet.Package.Builder imports a MSBuild target file into the project along with a [.nuspec](http://docs.nuget.org/create/nuspec-reference) file and a builder configuration file (`package.builder.json`).
+The rules and conventions for configuring a [.nuspec](http://docs.nuget.org/create/nuspec-reference) file can be found in the [official NuGet documentation](http://docs.nuget.org/create/creating-and-publishing-a-package)
 
-Change history can be found [here](Changelog.md)
+Change history can be found [here](Changelog.md).
 
-##Getting started
+## Getting started
 - In Visual Studio, create a new Class library.
-- Open Package Manager Console view and type ```Install-Package -Id NuGet.Package.Builder```
-- You now have two new files added `{your project name}.nuspec` and `package.builder.json`
-- Compile and you now have your first NuGet package
+- Open Package Manager Console view and type ```Install-Package -Id NuGet.Package.Builder```.
+- You now have two new files added `{your project name}.nuspec` and `package.builder.json`.
+- Compile and you now have your first NuGet package.
 
-##Package output
+## Package output
 Generated packages are location in the same folder as output binaries produced by the build, respecting build configuration, platform and output redirect as configured by VSO build template.
-To limit package generation to a specific configuration set the ```Configuration``` property in the ```package.builder.json``` file to the desired configuration name. e.g. setting it to ```Release``` will only generate a package when compiling a release configuration.
+To limit package generation to a specific configuration set the ```Configuration``` property in the ```package.builder.json``` file to the desired configuration name, e.g. setting it to ```Release``` will only generate a package when compiling a release configuration.
 
-##Publish Packages
+## Publish Packages
 Automatic publishing packages can be configured in `package.builder.json` by setting Publish.PublishOnBuild to `true`. 
 This will publish the package every time the project is compiled enabling a convenient way of publishing a package directly from Visual Studio.
 However publishing every time you compile is often not an ideal workflow so NuGet.Package.Builder offers a number of override possibilities.
@@ -43,14 +43,12 @@ If no source is specified, that is `package.builder.json -> Publish.Source` or `
 
 If no ApiKey is specified, that is `package.builder.json -> Publish.ApiKey` or `PublishApiKey` is not specified, then this value is required to be passed to the `cmd` file as the first parameter.
 
-
 ## Build Server
 NuGet.Package.Builder is designed to run on a build server working well with Package Restore without any dependency to installed software.
 It uses `nuget.exe` under the cover to package and publish its packages.
 
 Override publish options from VSO or TFS build template
 ![VSO Build Process Template](docs/BuildProcessTemplate.PNG)
-
 
 ## package.builder.json
 ```
