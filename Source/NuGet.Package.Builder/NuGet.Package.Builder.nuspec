@@ -2,7 +2,7 @@
 <package>
 	<metadata>
 		<id>NuGet.Package.Builder</id>
-		<version>1.0.12</version>
+		<version>1.0.13</version>
 		<title>NuGet Package Builder Tool</title>
 		<authors>Lars Skovslund/Richard Carruthers</authors>
 		<owners>Lars Skovslund/Richard Carruthers</owners>
@@ -13,8 +13,8 @@
 		</releaseNotes>
 		<copyright>Copyright 2015</copyright>
 		<projectUrl>https://github.com/LarsSkovslund/NuGet.Package.Builder</projectUrl>
-		<licenseUrl>https://raw.githubusercontent.com/LarsSkovslund/NuGet.Package.Builder/master/LICENSE</licenseUrl>
-		<developmentDependency>true</developmentDependency>
+    <license type="expression">MIT</license>
+    <developmentDependency>true</developmentDependency>
 		<tags>NuGet Package MSBuild Automation</tags>
 	</metadata>
 	<files>
